@@ -21,8 +21,11 @@ jobs:
       # Print Azure credentials
       - name: Print Azure credentials
         run: echo "$AZURE_CREDENTIALS"
-
-      
+        
+      # Display environment variables
+      - name: Display environment variables
+        run: env
+ 
       # Login via Azure CLI
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
