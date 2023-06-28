@@ -17,6 +17,10 @@ jobs:
       # Upgrade Azure CLI
       - name: 'Upgrade Azure CLI'
         run: az upgrade --yes
+
+      # Look
+      - name: Print Azure credentials
+        run: echo $AZURE_CREDENTIALS
       
       # Login via Azure CLI
       - name: 'Login via Azure CLI'
