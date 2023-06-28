@@ -1,34 +1,21 @@
-name: Linux_Container_Workflow
+name: Azure Login
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      # Checkout the repo
-      - name: 'Checkout GitHub Action'
-        uses: actions/checkout@main
-      
-      # Check Azure CLI version
-      - name: 'Check Azure CLI version'
-        run: az --version
-      
-      # Upgrade Azure CLI
-      - name: 'Upgrade Azure CLI'
-        run: az upgrade --yes
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      # Print Azure credentials
-      - name: Print Azure credentials
-        run: echo "$AZURE_CREDENTIALS"
-        
-      # Display environment variables
-      - name: Display environment variables
-        run: env
- 
-      # Login via Azure CLI
-      - name: 'Login via Azure CLI'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    # Continue with your workflow here
