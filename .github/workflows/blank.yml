@@ -1,15 +1,25 @@
 name: Linux_Container_Workflow
 
 on: [push]
+
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-        # checkout the repo
-        - name: 'Checkout GitHub Action'
-          uses: actions/checkout@main
-          
-        - name: 'Login via Azure CLI'
-          uses: azure/login@v1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repo
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+      
+      # Check Azure CLI version
+      - name: 'Check Azure CLI version'
+        run: az --version
+      
+      # Upgrade Azure CLI
+      - name: 'Upgrade Azure CLI'
+        run: az upgrade --yes
+      
+      # Login via Azure CLI
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
