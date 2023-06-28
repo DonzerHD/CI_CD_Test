@@ -18,12 +18,13 @@ jobs:
       - name: 'Upgrade Azure CLI'
         run: az upgrade --yes
 
-      # Look
+      # Print Azure credentials
       - name: Print Azure credentials
-        run: echo $AZURE_CREDENTIALS
+        run: echo ${{ secrets.AZURE_CREDENTIALS }}
       
       # Login via Azure CLI
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
