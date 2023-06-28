@@ -20,7 +20,8 @@ jobs:
 
       # Print Azure credentials
       - name: Print Azure credentials
-        run: echo ${{ secrets.AZURE_CREDENTIALS }}
+        run: echo "$AZURE_CREDENTIALS"
+
       
       # Login via Azure CLI
       - name: 'Login via Azure CLI'
